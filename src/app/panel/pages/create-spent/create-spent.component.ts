@@ -18,7 +18,9 @@ export class CreateSpentComponent implements OnInit{
     create_at: new Date,
     name: "",
     quantity: 0,
-    user: ""
+    user: "",
+    paid: false,
+    date_paid: undefined
   }
   update: boolean = false;
   url_public: string = '';
@@ -71,7 +73,6 @@ export class CreateSpentComponent implements OnInit{
         .subscribe({
           next: () => {
             alertSuccessTimerShowHide('Guardado correctamente');
-            console.log('ya se guardo: ', this.amount);
             this.router.navigate(['./app/inicio']);
           },
           error: (error: any) => {

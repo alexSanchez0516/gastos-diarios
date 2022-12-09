@@ -72,6 +72,30 @@
              class="form-control" >
     </div>
 
+    <mat-radio-group formControlName="paid" aria-label="Select an option">
+      <mat-label>¿Está pagado?</mat-label>
+      <mat-radio-button [value]=true>Sí</mat-radio-button>
+      <mat-radio-button [value]=false>No</mat-radio-button>
+    </mat-radio-group>
+
+
+
+    <mat-form-field class="w-100" *ngIf="checkPaid()" appearance="fill">
+      <mat-label>Fecha de pago/ingreso</mat-label>
+      <input matInput [matDatepicker]="picker"
+             formControlName="date_paid"
+      >
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-error *ngIf="campoIsInvalid('date_paid')">
+        Por favor, introduce una fecha válida
+      </mat-error>
+
+    </mat-form-field>
+
+
     <div fxLayout="row" class="justify-content-between">
 
       <div fxLayout="row" fxLayoutGap="1rem">
@@ -107,3 +131,6 @@
     </swal>
   </form>
 </div>
+
+
+<span class="m-2">{{formAmount.value | json}}</span>

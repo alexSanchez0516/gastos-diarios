@@ -31,7 +31,9 @@ export class AmountFormComponent implements OnInit, OnChanges{
     name: "",
     quantity: 0,
     user: "",
-    img_url: ""
+    img_url: "",
+    paid: false,
+
   };
   @Output() OnAmount: EventEmitter<Amount> = new EventEmitter;
   @Output() onDelete: EventEmitter<boolean> = new EventEmitter;
@@ -57,7 +59,9 @@ export class AmountFormComponent implements OnInit, OnChanges{
     'create_at': [this.amount.create_at, [
       Validators.required
     ],[]],
-    'img_url': ['',[],[]]
+    'img_url': ['',[],[]],
+    'paid' : [false, [Validators.required],[]],
+    'date_paid' : [this.amount.date_paid,[],[]]
   });
   isDelete: boolean = false;
 
@@ -82,8 +86,22 @@ export class AmountFormComponent implements OnInit, OnChanges{
       this.amount.name = <string>this.formAmount.value.name;
       this.amount.quantity = <number>this.formAmount.value.quantity;
       this.amount.category =  <number><unknown>this.formAmount.value.category;
-      this.amount.create_at = <Date><unknown>this.formAmount.value.create_at;
       this.amount.user = localStorage.getItem('uid')!;
+
+
+      this.amount.paid = <boolean>this.formAmount.get('paid')?.value;
+
+      console.log('iniciando debug');
+      if (this.amount.paid) {
+        console.log('está pagado');
+        this.amount.date_paid = <Date><unknown>this.formAmount.get('date_paid')?.value ;
+      } else {
+        console.log('no esta pagado');
+        this.amount.date_paid = undefined ;
+      }
+
+      console.log('despues de la comprobacion: ' , this.amount);
+
 
       if (this.fileSend) {
         if (this.amount.img_url && this.amount.img_url.length > 0) {
@@ -151,7 +169,13 @@ export class AmountFormComponent implements OnInit, OnChanges{
       if (this.amount.category != null) {
         this.formAmount.get('category')?.setValue(this.amount.category);
       }
-
+      if (this.amount.paid != null) {
+        this.formAmount.get('paid')?.setValue(this.amount.paid);
+        if (this.amount.date_paid) {
+          // @ts-ignore
+          this.formAmount.get('date_paid')?.setValue(this.amount.date_paid);
+        }
+      }
     }
   }
 
@@ -177,4 +201,12 @@ export class AmountFormComponent implements OnInit, OnChanges{
       this.fileSend = event.target.files[0];
     }
   }
+
+  checkPaid() : boolean  {
+    if (this.formAmount.get('paid')?.value) {
+      return this.formAmount.get('paid')!.value || false
+    }
+    return false;
+  }
+
 }

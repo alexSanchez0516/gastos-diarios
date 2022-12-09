@@ -19,7 +19,9 @@ export class CreateEntranceComponent implements OnInit{
     create_at: new Date,
     name: "",
     quantity: 0,
-    user: ""
+    user: "",
+    paid: false,
+    date_paid: undefined
   }
   update: boolean = false;
   url_public: string = '';
@@ -83,6 +85,7 @@ export class CreateEntranceComponent implements OnInit{
         .subscribe({
           next: () => {
             alertSuccessTimerShowHide('Guardado correctamente');
+            this.router.navigate(['/app/inicio']);
           },
           error: (error: any) => {
             console.log(error);

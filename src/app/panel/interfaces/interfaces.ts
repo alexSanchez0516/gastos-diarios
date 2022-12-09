@@ -12,8 +12,10 @@ export interface Amount {
   category?: number;
   create_at: Date;
   update_at?: Date;
-  paid?: boolean;
-}
+  paid: boolean;
+  date_paid?: Date;
+
+  }
 
 export interface Category {
   id: number
