@@ -3,7 +3,7 @@ import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MyErrorStateMatcher} from "../../../helpers/MyErrorStateMatcher";
-import {emailPattern} from "../../../helpers/Patterns";
+import {emailPattern, notSpacer} from "../../../helpers/Patterns";
 import {UtilService} from "../../../services/util.service";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../../interfaces/User";
@@ -19,23 +19,21 @@ const googleLogoURL = "https://raw.githubusercontent.com/fireflysemantics/logo/m
 })
 export class RegisterComponent {
 
-
-  // TODO: VALIDATOR PARA SABER SI EXISTE ESE USERNAME
   registerForm: FormGroup = this.fb.group({
     'username': ['', [
       Validators.required, Validators.minLength(4),
-      Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
+      Validators.pattern(notSpacer)
     ],[]],
     'email': ['', [
       Validators.required, Validators.pattern(emailPattern)
     ],[]],
     'password1': ['', [
       Validators.required, Validators.minLength(6),
-      Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
+      Validators.pattern(notSpacer)
     ],[]],
     'password2': ['', [
       Validators.required, Validators.minLength(6),
-      Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
+      Validators.pattern(notSpacer)
     ],[]],
   }, {
     validators: [this.utilService.equalsFields('password1', 'password2')]

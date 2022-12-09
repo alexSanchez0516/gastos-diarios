@@ -5,6 +5,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
 import {MaterialModule} from "../material/material.module";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -13,15 +14,18 @@ import {MaterialModule} from "../material/material.module";
     ErrorPageComponent,
     SidenavComponent,
     FooterComponent,
-    LogoComponent
+    LogoComponent,
+    SidenavComponent
   ],
   exports: [
     LogoComponent,
-    FooterComponent
+    FooterComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterLink
   ]
 })
 export class SharedModule { }

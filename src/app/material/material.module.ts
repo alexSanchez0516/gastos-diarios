@@ -14,6 +14,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [],
@@ -35,7 +37,9 @@ import {MatChipsModule} from '@angular/material/chips';
     FlexLayoutModule,
     MatTabsModule,
     MatSlideToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

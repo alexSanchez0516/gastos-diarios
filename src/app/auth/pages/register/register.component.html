@@ -1,4 +1,7 @@
-<div style="margin-top: 3rem">
+<div fxLayout="column"
+     fxLayoutAlign="center center"
+     fxLayoutGap="1rem"
+     style="margin-top: 3rem">
   <form
     (ngSubmit)="save()"
     [formGroup]="registerForm"
@@ -69,8 +72,9 @@
 
     </div>
 
-
   </form>
+
+  <mat-spinner *ngIf="authRegisterResponse"></mat-spinner>
   <swal
     [title]="authRegisterResponseMessage"
     [icon]="authRegisterResponseIcon"
@@ -79,3 +83,4 @@
     (didClose)="authRegisterResponse = false">
   </swal>
 </div>
+

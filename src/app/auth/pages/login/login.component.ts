@@ -6,7 +6,7 @@ import {MyErrorStateMatcher} from "../../../helpers/MyErrorStateMatcher";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../../interfaces/User";
-import {emailPattern} from "../../../helpers/Patterns";
+import {emailPattern, notSpacer} from "../../../helpers/Patterns";
 
 
 const googleLogoURL = "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
@@ -24,7 +24,7 @@ export class LoginComponent {
     ],[]],
     'password': ['123456789', [
       Validators.required, Validators.minLength(6),
-      Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
+      Validators.pattern(notSpacer)
     ],[]],
 
   })

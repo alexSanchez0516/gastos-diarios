@@ -3,4 +3,5 @@ export interface User{
   password?: string;
   email?: string;
   uid?: string;
+  img_url?:  string;
 }

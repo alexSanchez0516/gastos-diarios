@@ -43,8 +43,14 @@ export class AuthService {
       )
   }
 
+  /**
+   *
+   * @param resp
+   * @private
+   */
   private mapResponseAndSetToken(resp: AuthResponse){
     if (resp.ok) {
+      localStorage.setItem('uid', resp.uid)
       localStorage.setItem('token', resp.token!);
       this._user = {
         username: resp.username,
@@ -53,6 +59,10 @@ export class AuthService {
     }
   }
 
+  /**
+   *
+   * @param user
+   */
   register(user: User) {
     const url = `${this.baseUrl}/auth/new`;
     return this.http.post<AuthResponse>(url, user)
@@ -65,6 +75,9 @@ export class AuthService {
       )
   }
 
+  /**
+   *
+   */
   validateToken(): Observable<boolean> {
     const token = localStorage.getItem('token') || '';
     const url = `${this.baseUrl}/auth/renew`;

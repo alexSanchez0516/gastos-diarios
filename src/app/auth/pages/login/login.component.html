@@ -3,8 +3,8 @@
     (ngSubmit)="login()"
     [formGroup]="loginForm"
     fxLayout="column wrap"
-    fxLayoutGap="1.5rem"
-        >
+    fxLayoutGap="1.5rem">
+
     <mat-form-field >
       <mat-label>Email </mat-label>
       <input matInput formControlName="email">
@@ -24,11 +24,8 @@
       </mat-error>
     </mat-form-field>
 
-
-
     <div fxLayout="column"
           fxLayoutGap="1rem">
-
       <button
         (click)="login()"
         mat-button
@@ -38,7 +35,6 @@
         <mat-icon>login</mat-icon>
       </button>
 
-
       <button
         mat-button
         style="padding: 1rem;">
@@ -47,8 +43,6 @@
       </button>
 
     </div>
-
-
   </form>
 
   <swal

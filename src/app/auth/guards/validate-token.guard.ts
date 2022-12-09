@@ -14,7 +14,6 @@ export class ValidateTokenGuard implements CanActivate, CanLoad {
   }
 
   canActivate() : Observable<boolean>  | boolean {
-    console.log('canActivate');
     return this.authService.validateToken()
       .pipe(
         tap( valid => {
@@ -26,7 +25,6 @@ export class ValidateTokenGuard implements CanActivate, CanLoad {
   }
 
   canLoad() : Observable<boolean>  | boolean {
-    console.log('canLoad');
     return this.authService.validateToken().pipe(
       tap( valid => {
         if (!valid) {
