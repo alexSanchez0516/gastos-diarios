@@ -8,17 +8,16 @@ import {HttpClientModule} from "@angular/common/http";
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import {environment} from "../environments/environment";
 
-
 @NgModule({
     declarations: [
         AppComponent,
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+  ],
   providers: [
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
     ],

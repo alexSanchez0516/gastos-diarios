@@ -59,6 +59,11 @@
       "id": 12,
       "name": "Transporte",
       "img_url": "train"
+    },
+    {
+      "id": 13,
+      "name": "Vivienda",
+      "img_url": "home"
     }
   ],
   "entrances": [

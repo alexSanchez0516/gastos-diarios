@@ -53,8 +53,10 @@ export class SpentService {
     return this.http.delete(url);
   }
 
-  all() {
-
+  allByUser(uid: string) : Observable<Amount>{
+      const url = `${this.base_url}/app/spents/user/${uid}`;
+      console.log(url);
+      return this.http.get<Amount>(url);
   }
 
 }

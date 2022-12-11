@@ -1,29 +1,32 @@
-import { Component, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import { ChartConfiguration, ChartData, ChartEvent } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import {AmountService} from "../../services/amount.service";
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent {
+export class BarChartComponent implements OnChanges, OnInit{
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
   };
-  public barChartType: ChartType = 'bar';
-
 
   public barChartData: ChartData<'bar'> = {
-    labels: [ '01/07', '02/07', '03/07', '04/07', '05/07', '06/07', '07/07' ],
+    labels: ['a','b','c'],
     datasets: [
-      { data: [ 65, 59, 80, 81, 56, 55, 40, 300 ], label: 'Gastos' },
-      { data: [ 28, 48, 40, 19, 86, 27, 90,10 ], label: 'Ingresos' }
+      { data: [90, 150,30], label: 'Gastos' },
+      { data: [70, 200, 60], label: 'Ingresos' }
     ]
   };
+
+
+  constructor(private amountService: AmountService) {
+  }
 
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
@@ -46,6 +49,23 @@ export class BarChartComponent {
       40 ];
 
     this.chart?.update();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('changes: ', changes);
+  }
+
+  ngOnInit(): void {
+    console.log('init: ',this.barChartData);
+
+    this.amountService.getSpentsAndEntrancesMinDay()
+      .subscribe({
+        next: (amounts) => {
+          this.barChartData.datasets[0].data = [...amounts.spents.map((val) => val.quantity)];
+          this.barChartData.datasets[1].data = [...amounts.entrances.map((val) => val.quantity)];
+          console.log('final: ',this.barChartData);
+        }
+      })
   }
 
 }

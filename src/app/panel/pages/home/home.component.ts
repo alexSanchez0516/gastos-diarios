@@ -15,7 +15,6 @@ export class HomeComponent {
 
   constructor(private authService: AuthService,
               private router: Router) {
-    console.log(this.user);
   }
 
   logout() {

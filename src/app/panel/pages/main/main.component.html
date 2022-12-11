@@ -6,7 +6,7 @@
     <mat-chip
       class="mat-mdc-chip-set-stacked"
       >
-      Balance {{12323 | currency}}
+      Balance {{balance | currency}}
     </mat-chip>
   </div>
 
@@ -20,9 +20,18 @@
        fxLayoutAlign="center center">
     <span class="text-light text-center">Últimos 7 días</span>
   </div>
-  <app-bar-chart></app-bar-chart>
 
+
+  <app-bar-chart>
+
+  </app-bar-chart>
+<!--<app-pie></app-pie>-->
   <app-menu-main class="animate__animated animate__fadeInLeftBig"></app-menu-main>
+  <div style="bottom: 0;
+  position: fixed;
+  right: 8px">
+    <mat-icon class="icon-display m-2 text-success pointer ">smart_toy</mat-icon>
+  </div>
 
 
   <mat-list class="mt-3"
@@ -33,26 +42,56 @@
     <div fxFlex="80" >
       <div fxLayout="column"
            fxLayoutAlign="center center">
-        <span class="text-center">Últimos movimientos</span>
+        <span class="text-center">Últimos movimientos (7 días)</span>
         <hr class="w-100">
         <mat-icon class="icon-display m-2 text-success" >payments</mat-icon>
       </div>
 
-      <mat-list-item *ngFor="let note of notes"
-      >
+      <mat-tab-group color="primary">
+        <mat-tab label="Gastos">
+          <mat-list-item *ngFor="let spent of spentsLimit"
+          >
 
-        <mat-icon class="icon-display align-self-center text-success"  matListItemIcon>payment</mat-icon>
+            <mat-icon class="icon-display align-self-center text-success"  matListItemIcon>payment</mat-icon>
 
-        <div fxLayout="column"
-             fxLayoutAlign="center center"
-        >
-          <div  matListItemTitle>{{note.name}}</div>
-          <div matListItemLine>{{note.updated | date}}</div>
-        </div>
+            <div fxLayout="column"
+                 fxLayoutAlign="center center"
+            >
+              <div  matListItemTitle><strong>Concepto: </strong>{{spent.name}}</div>
+              <div matListItemLine>Importe: {{spent.quantity | currency}}</div>
+              <div matListItemLine>Fecha creación: {{spent.create_at | date}}</div>
+              <div matListItemLine>Fecha de pago: {{spent.date_paid | date}}</div>
+            </div>
+            <button mat-raised-button routerLink="/app/movimientos" class="my-2">Ver más</button>
 
-      </mat-list-item>
+
+          </mat-list-item>
+        </mat-tab>
+        <mat-tab label="Ingresos">
+          <mat-list-item *ngFor="let entrance of entrancesLimit"
+          >
+
+            <mat-icon class="icon-display align-self-center text-success"  matListItemIcon>payment</mat-icon>
+
+            <div fxLayout="column"
+                 fxLayoutAlign="center center"
+            >
+              <div  matListItemTitle><strong>Concepto: </strong>{{entrance.name}}</div>
+              <div matListItemLine>Importe: {{entrance.quantity | currency}}</div>
+              <div matListItemLine>Fecha creación: {{entrance.create_at | date}}</div>
+              <div matListItemLine>Fecha de pago: {{entrance.date_paid | date}}</div>
+            </div>
+
+            <button mat-raised-button routerLink="/app/movimientos" class="my-2">Ver más</button>
+
+          </mat-list-item>
+        </mat-tab>
+      </mat-tab-group>
+
+
+
     </div>
 
   </mat-list>
-
 </div>
+

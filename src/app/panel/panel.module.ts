@@ -25,6 +25,7 @@ import { RemindersComponent } from './pages/reminders/reminders.component';
 import {environment} from "../../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import { PieComponent } from './components/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,8 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
     MovementsComponent,
     AmountFormComponent,
     RemindersComponent,
+    PieComponent,
+
   ],
     imports: [
         CommonModule,

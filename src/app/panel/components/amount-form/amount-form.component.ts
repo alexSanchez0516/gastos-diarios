@@ -87,21 +87,12 @@ export class AmountFormComponent implements OnInit, OnChanges{
       this.amount.quantity = <number>this.formAmount.value.quantity;
       this.amount.category =  <number><unknown>this.formAmount.value.category;
       this.amount.user = localStorage.getItem('uid')!;
-
-
       this.amount.paid = <boolean>this.formAmount.get('paid')?.value;
+      this.amount.date_paid = undefined ;
 
-      console.log('iniciando debug');
       if (this.amount.paid) {
-        console.log('está pagado');
         this.amount.date_paid = <Date><unknown>this.formAmount.get('date_paid')?.value ;
-      } else {
-        console.log('no esta pagado');
-        this.amount.date_paid = undefined ;
       }
-
-      console.log('despues de la comprobacion: ' , this.amount);
-
 
       if (this.fileSend) {
         if (this.amount.img_url && this.amount.img_url.length > 0) {

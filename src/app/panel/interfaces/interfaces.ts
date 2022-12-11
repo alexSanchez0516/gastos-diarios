@@ -17,13 +17,22 @@ export interface Amount {
 
   }
 
+  export interface  ResponseAllAmounts {
+    spents: Amount[];
+    entrances: Amount[];
+  }
+
 export interface Category {
-  id: number
+  id: number;
   name: string;
   img_url: string;
 }
 
 export interface CategorysResponse {
-  entrances: Category[],
-  spents: Category[]
+  entrances: Category[];
+  spents: Category[];
 }
+
+
+
+
