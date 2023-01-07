@@ -27,12 +27,13 @@ export class AmountFormComponent implements OnInit, OnChanges{
   @Input() categories!: Category[]
   @ViewChild('file') file!: ElementRef<HTMLInputElement>;
   @Input() amount: Amount = {
+    category: 0,
     create_at: new Date,
     name: "",
     quantity: 0,
     user: "",
     img_url: "",
-    paid: false,
+    paid: false
 
   };
   @Output() OnAmount: EventEmitter<Amount> = new EventEmitter;
@@ -47,6 +48,10 @@ export class AmountFormComponent implements OnInit, OnChanges{
       Validators.required, Validators.minLength(3),
       Validators.pattern(notSpacer)
     ],[]],
+    'details': ['', [
+
+    ],[]],
+
     'quantity': [0,[
       Validators.required, Validators.min(1),
       Validators.pattern(notSpacer),
@@ -84,6 +89,7 @@ export class AmountFormComponent implements OnInit, OnChanges{
 
     if (this.formAmount.valid) {
       this.amount.name = <string>this.formAmount.value.name;
+      this.amount.details = <string>this.formAmount.value.details;
       this.amount.quantity = <number>this.formAmount.value.quantity;
       this.amount.category =  <number><unknown>this.formAmount.value.category;
       this.amount.user = localStorage.getItem('uid')!;
@@ -144,8 +150,7 @@ export class AmountFormComponent implements OnInit, OnChanges{
           if (res) {
             if (this.file.nativeElement.files) {
               const file = this.file.nativeElement.files[0];
-              const objURL = URL.createObjectURL(file);
-              this.imgName = objURL
+              this.imgName = URL.createObjectURL(file)
             }
           }
         }

@@ -29,6 +29,15 @@
       </mat-error>
     </mat-form-field>
 
+
+    <mat-form-field class="w-100">
+      <mat-label>Detalles </mat-label>
+      <textarea matInput formControlName="details" placeholder="Detalles..."></textarea>
+      <mat-error *ngIf="campoIsInvalid('details')">
+        Por favor, introduce un datalle válido
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field class="w-100">
       <mat-label>Importe </mat-label>
       <input matInput formControlName="quantity">

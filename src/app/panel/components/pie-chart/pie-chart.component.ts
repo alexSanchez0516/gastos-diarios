@@ -1,13 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
 @Component({
-  selector: 'app-pie',
-  templateUrl: './pie.component.html',
-  styleUrls: ['./pie.component.css']
+  selector: 'app-pie-chart',
+  templateUrl: './pie-chart.component.html',
+  styleUrls: ['./pie-chart.component.css']
 })
-export class PieComponent {
+export class PieChartComponent {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   // Pie
@@ -18,23 +17,13 @@ export class PieComponent {
       legend: {
         display: true,
         position: 'top',
-      },
-      // @ts-ignore
-      datalabels: {
-        // @ts-ignore
-        formatter: (value, ctx) => {
-          if (ctx.chart.data.labels) {
-            return ctx.chart.data.labels[ctx.dataIndex];
-          }
-        },
-      },
+      }
     }
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: [ [ 'Download', 'Ingreso' ], [ 'In', 'gasto' ], ['Mail Sales', 'gasto'] ],
+    labels: [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales' ],
     datasets: [ {
-      data: [ 100,200, 500, 150,20 ],
-
+      data: [ 300, 500, 100 ]
     } ]
   };
   public pieChartType: ChartType = 'pie';

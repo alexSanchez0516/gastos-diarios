@@ -6,11 +6,8 @@ import { CreateSpentComponent } from './pages/create-spent/create-spent.componen
 import { CreateEntranceComponent } from './pages/create-entrance/create-entrance.component';
 import { SpentsComponent } from './pages/spents/spents.component';
 import { EntrancesComponent } from './pages/entrances/entrances.component';
-import { SpentComponent } from './pages/spent/spent.component';
-import { EntranceComponent } from './pages/entrance/entrance.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
-import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
 import { MainComponent } from './pages/main/main.component';
 import { ConfigUserComponent } from './pages/config-user/config-user.component';
 import {MaterialModule} from "../material/material.module";
@@ -21,11 +18,12 @@ import { MovementsComponent } from './pages/movements/movements.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { AmountFormComponent } from './components/amount-form/amount-form.component';
-import { RemindersComponent } from './pages/reminders/reminders.component';
 import {environment} from "../../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
-import { PieComponent } from './components/pie/pie.component';
+import { CardAmountComponent } from './components/card-amount/card-amount.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -34,18 +32,16 @@ import { PieComponent } from './components/pie/pie.component';
     CreateEntranceComponent,
     SpentsComponent,
     EntrancesComponent,
-    SpentComponent,
-    EntranceComponent,
     DashboardComponent,
     BarChartComponent,
-    DoughnutChartComponent,
     MainComponent,
     ConfigUserComponent,
     MenuMainComponent,
     MovementsComponent,
     AmountFormComponent,
-    RemindersComponent,
-    PieComponent,
+    CardAmountComponent,
+    LineChartComponent,
+    PieChartComponent,
 
   ],
     imports: [
@@ -61,5 +57,3 @@ import { PieComponent } from './components/pie/pie.component';
     ]
 })
 export class PanelModule { }
-
-

@@ -5,7 +5,7 @@ export function alertError(message: string) : void{
     title: '¡Error!',
     text: `${message}`,
     icon: 'error',
-    confirmButtonText: 'Cool'
+    confirmButtonText: 'Ok'
   }).then();
 }
 

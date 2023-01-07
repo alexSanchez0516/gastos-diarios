@@ -20,7 +20,7 @@ export const routesMain : ItemLink[] = [
     icon2: 'payments'
   },
   {
-    text: "Movimientos",
+    text: "Movimientos gasto/ingreso",
     url: '/app/movimientos',
     icon: 'fact_check',
     icon2: 'visibility'
@@ -32,9 +32,9 @@ export const routesMain : ItemLink[] = [
     icon2:"visibility"
   },
   {
-    text: "Recordatorios",
-    url: '/app/recordatorios',
-    icon: 'today',
+    text: "Controles",
+    url: '/app/control-gastos',
+    icon: 'savings',
     icon2: 'visibility'
 
   },

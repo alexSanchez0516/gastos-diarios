@@ -9,10 +9,6 @@ export class BalanceService{
     return this._balance;
   }
 
-  set balance(value: number) {
-    this._balance = value;
-  }
-
   get entrances(): Amount[] {
     return this._entrances;
   }
@@ -29,9 +25,6 @@ export class BalanceService{
     this._spents = value;
   }
 
-  private _balance: number = 0;
-  private _entrances: Amount[] = [];
-
   get entrancesLimit(): Amount[] {
     return [...this._entrancesLimit];
   }
@@ -40,29 +33,14 @@ export class BalanceService{
     this._entrancesLimit = value;
   }
 
+  get balance_month(): number {
+    return this._balance_month;
+  }
+
   get spentsLimit(): Amount[] {
     return [...this._spentsLimit];
   }
 
-  set spentsLimit(value: Amount[]) {
-    this._spentsLimit = value;
-  }
-
-  get totalEntrances(): number {
-    return this._totalEntrances;
-  }
-
-  set totalEntrances(value: number) {
-    this._totalEntrances = value;
-  }
-
-  get totalSpent(): number {
-    return this._totalSpent;
-  }
-
-  set totalSpent(value: number) {
-    this._totalSpent = value;
-  }
 
   private _entrancesLimit: Amount[] = [];
   private _spents: Amount[] = [];
@@ -70,16 +48,34 @@ export class BalanceService{
   private _totalEntrances = 0
   private _totalSpent = 0
   public currentDay = new Date();
+  private _balance: number = 0;
+  private _balance_month: number = 0;
+  private current_month = new Date().getMonth();
+  private _entrances: Amount[] = [];
+
   constructor() { }
 
+
+
   getBalance(spents: Amount[], entrances: Amount[]) {
+
     this._balance = 0;
     this._totalEntrances = 0;
     this._totalSpent = 0;
-    this.entrances = [...entrances];
+    let totEntrancesMonth = 0;
+    let totSpentsMonth = 0;
 
+    this.entrances = [...entrances];
     // TODO: Llevar a funcional con algun array methods
     entrances.forEach((entrance) => {
+    /*  if (entrance.paid) {
+
+      }*/
+
+      if (new Date(entrance.create_at).getMonth() == this.current_month)  {
+        totEntrancesMonth += entrance.quantity;
+      }
+
       this._totalEntrances += entrance.quantity;
     });
     // TODO: Llevar a funcional con algun array methods
@@ -87,10 +83,16 @@ export class BalanceService{
     // TODO: Llevar a funcional con algun array methods
     this.spents = [...spents];
     spents.forEach((spent) => {
+
+      if (new Date(spent.create_at).getMonth() == this.current_month)  {
+        totSpentsMonth += spent.quantity;
+      }
+
       this._totalSpent += spent.quantity;
     });
     // TODO: Llevar a funcional con algun array methods
 
+    this._balance_month = totEntrancesMonth - totSpentsMonth;
     this._balance = this._totalEntrances - this._totalSpent;
   }
 
@@ -100,13 +102,13 @@ export class BalanceService{
     this._spentsLimit = [ ...this._spents]
       .filter((spent) => {
         spent.create_at = new Date(spent.create_at);
-        return spent.create_at >= dayMax
+        return spent.create_at >= dayMax;
       });
 
     this.entrancesLimit = [...this._entrances]
       .filter((spent) => {
         spent.create_at = new Date(spent.create_at);
-        return spent.create_at >= dayMax
+        return spent.create_at >= dayMax;
       });
   }
 

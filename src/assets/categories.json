@@ -64,23 +64,33 @@
       "id": 13,
       "name": "Vivienda",
       "img_url": "home"
+    },
+    {
+      "id": 14,
+      "name": "Otros",
+      "img_url": "question_mark"
     }
   ],
   "entrances": [
     {
-      "id": 13,
+      "id": 15,
       "name": "Préstamo",
       "img_url": "account_balance "
     },
     {
-      "id": 14,
+      "id": 16,
       "name": "Sueldo",
       "img_url": "attach_money"
     },
     {
-      "id": 15,
+      "id": 17,
       "name": "Ventas",
       "img_url": "trending_up "
+    },
+    {
+      "id": 18,
+      "name": "Otros",
+      "img_url": "question_mark"
     }
   ]
 

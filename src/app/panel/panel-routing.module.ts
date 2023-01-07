@@ -9,10 +9,7 @@ import {CreateEntranceComponent} from "./pages/create-entrance/create-entrance.c
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {ConfigUserComponent} from "./pages/config-user/config-user.component";
 import {ErrorPageComponent} from "../shared/error-page/error-page.component";
-import {EntranceComponent} from "./pages/entrance/entrance.component";
-import {SpentComponent} from "./pages/spent/spent.component";
 import {MovementsComponent} from "./pages/movements/movements.component";
-import {RemindersComponent} from "./pages/reminders/reminders.component";
 
 const routes: Routes = [
   {
@@ -43,14 +40,6 @@ const routes: Routes = [
         path: 'crear-ingreso',
         component: CreateEntranceComponent
       },
-      {
-        path: 'gasto/:id',
-        component: SpentComponent
-      },
-      {
-        path: 'ingreso/:id',
-        component: EntranceComponent
-      },
 
       {
         path: 'editar-gasto/:id',
@@ -67,10 +56,6 @@ const routes: Routes = [
       {
         path: 'opciones',
         component: ConfigUserComponent
-      },
-      {
-        path: 'recordatorios',
-        component: RemindersComponent
       },
       {
         path: '**',
